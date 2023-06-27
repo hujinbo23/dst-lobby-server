@@ -1,0 +1,124 @@
+https://play.tailwindcss.com/
+
+<br/>
+<div class="box-border p-4 ">
+
+  <div style="margin-bottom: 16px;margin-top: 16px;">
+    <div style="margin-bottom: 15px;
+    margin-top: -10px;">
+      <h3 style="line-height: 40px;color: #454545;">
+        <b style="    background: #f6f6f6;
+    border-radius: 16px;
+    height: 18px;
+    font-size: 18px;
+    color: #2254f4;
+    padding: 8px 16px ;
+    line-height: 18px;
+    overflow: hidden;">#猜猜我是谁的世界</b>
+      </h3>
+    </div>
+    <div style="padding: 16px">
+      <h3 style="line-height: 40px;color: #454545;">
+        <b style="display: inline-block;
+    border-bottom: 4px solid #2254f4;">描述</b>
+      </h3>
+      <p style="color:#aaaebb">QQ群：1079063852（定期清理潜水员） 2群：1022892130（潜水专群） 碰到熊孩子请进群举报</p>
+
+      <h3 style="line-height: 40px;color: #454545;">
+        <b style="display: inline-block;
+    border-bottom: 4px solid #2254f4;">世界直连</b>
+        <p class="text-blue-600">c_connect("112.32.131.31", 10999)</p>
+    </div>
+  </div>
+  <div>
+
+
+    <div style="margin-bottom: 16px;margin-top:16px;">
+      <div style="margin-bottom: 15px;
+    margin-top: -10px;">
+        <h3 style="line-height: 40px;color: #454545;">
+          <b style="    background: #f6f6f6;
+    border-radius: 16px;
+    height: 18px;
+    font-size: 18px;
+    color: #2254f4;
+    padding: 8px 16px ;
+    line-height: 18px;
+    overflow: hidden;">#其他信息</b>
+        </h3>
+      </div>
+      <div style="padding: 16px">
+
+        <span class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <span>服主: <span style="color: #2254f4;">xxxxxxxx</span></span>
+        <span>版本:  <span style="color: #2254f4;">562556</span></span>
+        <span>模式: <span style="color: #2254f4;">生存</span> </span>
+        <span>天数: <span style="color: #2254f4;">10</span></span>
+        <span>季节: <span style="color: #2254f4;">春(1/20)</span> </span>
+        </span>
+
+      </div>
+    </div>
+    <div>
+
+
+
+      <div style="margin-bottom: 16px;margin-top: 16px;">
+        <div style="margin-bottom: 15px;
+    margin-top: -10px;">
+          <h3 style="line-height: 40px;color: #454545;">
+            <b style="    background: #f6f6f6;
+    border-radius: 16px;
+    height: 18px;
+    font-size: 18px;
+    color: #2254f4;
+    padding: 8px 16px ;
+    line-height: 18px;
+    overflow: hidden;">#在线玩家</b>
+          </h3>
+        </div>
+        <div style="padding: 16px">
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+            <div style="display: flex;">
+              <img class="ant-image-img" src="https://dst.liuyh.com/static/img/dstui/icon/wickerbottom_inv.png" width="36.8">
+              <span style="margin-left: 24px">皇家欺诈师</span>
+            </div>
+
+            <div style="display: flex;">
+              <img class="ant-image-img" src="https://dst.liuyh.com/static/img/dstui/icon/wickerbottom_inv.png" width="36.8">
+              <span style="margin-left: 24px">皇家欺诈师</span>
+            </div>
+
+            <div style="display: flex;">
+              <img class="ant-image-img" src="https://dst.liuyh.com/static/img/dstui/icon/wickerbottom_inv.png" width="36.8">
+              <span style="margin-left: 24px">皇家欺诈师</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div>
+
+        <div style="margin-bottom: 16px;margin-top: 16px;">
+          <div style="margin-bottom: 15px;
+    margin-top: -10px;">
+            <h3 style="line-height: 40px;color: #454545;">
+              <b style="    background: #f6f6f6;
+    border-radius: 16px;
+    height: 18px;
+    font-size: 18px;
+    color: #2254f4;
+    padding: 8px 16px ;
+    line-height: 18px;
+    overflow: hidden;">#在线历史</b>
+            </h3>
+          </div>
+          <div style="padding: 16px">
+            xxxxx
+          </div>
+        </div>
+        <div>
+
+        </div>
+      </div>
+    </div>

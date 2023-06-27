@@ -1,0 +1,6 @@
+port: 80
+interval:
+  collect: 120
+  statistics: 600
+database:
+  logLevel: 4
