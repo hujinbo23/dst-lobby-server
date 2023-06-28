@@ -2,6 +2,7 @@ package api
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"io"
 	"log"
@@ -45,6 +46,12 @@ func (m *ModApi) QueryMod(ctx *gin.Context) {
 }
 
 func (m *ModApi) queryModRequest(modId string) map[string]interface{} {
+	defer func() {
+		if r := recover(); r != nil {
+			log.Println(r)
+		}
+	}()
+
 	urlStr := "http://api.steampowered.com/IPublishedFileService/GetDetails/v1/"
 	data := url.Values{}
 	data.Set("key", steamAPIKey)
@@ -52,15 +59,17 @@ func (m *ModApi) queryModRequest(modId string) map[string]interface{} {
 	data.Set("publishedfileids[0]", modId)
 	urlStr = urlStr + "?" + data.Encode()
 
+	fmt.Println(urlStr)
+
 	req, err := http.NewRequest("GET", urlStr, nil)
 	if err != nil {
-		log.Panicln(err)
+		fmt.Println(err)
 	}
 
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
-		log.Panicln(err)
+		fmt.Println(err)
 	}
 	defer func(Body io.ReadCloser) {
 		err := Body.Close()

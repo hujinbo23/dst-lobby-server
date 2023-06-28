@@ -36,10 +36,14 @@ export default ({title,rowId})=>{
             endDate: getEndWeek()
         }).then((resp)=>{
             // console.log(resp.data)
-            const dateData = resp.data.map(item=>item.date.slice(5)) || []
-            const maxconnectionsData = resp.data.map(item=>item.maxconnections) || []
-            const connectedData = resp.data.map(item=>item.connected) || []
-
+            let dateData = []
+            let maxconnectionsData = []
+            let connectedData = []
+            if (resp.data !== undefined && resp.data !== null) {
+                dateData = resp.data.map(item=>item.date.slice(5)) || []
+                maxconnectionsData = resp.data.map(item=>item.maxconnections) || []
+                connectedData = resp.data.map(item=>item.connected) || []
+            }
             chart.setOption({
                 // 在这里设置图表的选项
                 title: {
