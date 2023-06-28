@@ -6,6 +6,7 @@ import (
 	"dst-lobby-server/lobbyServer"
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"log"
 	"net/http"
 	"strconv"
 )
@@ -122,4 +123,31 @@ func (l *LobbyServerApi) QueryPlayer(ctx *gin.Context) {
 		Data: lobbyHomeDetails,
 	})
 
+}
+
+func (l *LobbyServerApi) QueryHistoryPlayersCount(ctx *gin.Context) {
+
+	addr := ctx.Query("addr")
+	port := ctx.Query("port")
+	rowId := ctx.Query("rowId")
+	startDate, endDate, u := DateRange(ctx)
+	log.Println(addr, port, rowId, startDate, endDate, u)
+
+	type history struct {
+		Date           string `json:"date"`
+		RowId          string `json:"rowId"`
+		Addr           string `json:"addr"`
+		Port           string `json:"port"`
+		Name           string `json:"name"`
+		Maxconnections int    `json:"maxconnections"`
+		Connected      int    `json:"connected"`
+	}
+	var data []history
+	db := database.DB
+	db.Raw("select strftime('%Y-%m-%d %H:%M', datetime(created_at, 'localtime', 'utc')) AS date,row_id,addr, port, name, maxconnections, connected from lobby_home_briefs where created_at between ? and ? and row_id = ? group by date", startDate, endDate, rowId).Scan(&data)
+	ctx.JSON(http.StatusOK, Response{
+		Code: 200,
+		Msg:  "success",
+		Data: data,
+	})
 }

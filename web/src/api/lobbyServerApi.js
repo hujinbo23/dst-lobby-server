@@ -34,3 +34,9 @@ export async function lobbyServerDetailApi(params) {
     const response = await http.get(url)
     return response.data
 }
+
+export async function lobbyServerHistoryApi(params) {
+    const url = `/lobby/server/query/history?rowId=${params.rowId}&startDate=${new Date(new Date(params.startDate).setHours(8)).toISOString()}&endDate=${new Date(new Date(params.endDate).setHours(7+24)).toISOString()}`
+    const response = await http.get(url)
+    return response.data
+}

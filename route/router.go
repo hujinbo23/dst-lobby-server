@@ -31,6 +31,8 @@ func initRouter(router *gin.RouterGroup) {
 	router.GET("/lobby/server/query", lobbyServerApi.QueryLobbyServerList)
 	router.GET("/lobby/server/query/detail", lobbyServerApi.QueryLobbyServerDetail)
 	router.GET("/lobby/server/query/player", lobbyServerApi.QueryPlayer)
+
+	router.GET("/lobby/server/query/history", lobbyServerApi.QueryHistoryPlayersCount)
 }
 
 func NewRoute() *gin.Engine {
