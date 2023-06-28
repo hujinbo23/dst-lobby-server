@@ -1,6 +1,7 @@
 import {dstRoles} from "../utils/dst.js";
 import {Image} from "antd";
 import HistoryLineChart from "./chart/HistoryLineChart.jsx";
+import ModsInfo from "./home/ModsInfo.jsx";
 
 const H3Style = ({title}) => {
     return (
@@ -116,6 +117,13 @@ export default ({home}) => {
                         <H3Style title={"历史人数"}/>
                         <div style={{padding: '16px'}}>
                             <HistoryLineChart title={home.name} rowId={home.__rowId}/>
+                        </div>
+                    </div>
+
+                    <div style={marginCss}>
+                        <H3Style title={"模组"}/>
+                        <div style={{padding: '16px'}}>
+                            <ModsInfo modsInfo={home.mods_info} />
                         </div>
                     </div>
 
