@@ -33,12 +33,35 @@ var (
 )
 
 type LobbyServer struct {
-	DB *gorm.DB
+	DB  *gorm.DB
+	DB2 *gorm.DB
 }
 
-func NewLobbyServerWithDB(db *gorm.DB) *LobbyServer {
+func NewLobbyServerWithDB(db *gorm.DB, enableMemory bool) *LobbyServer {
 	lobbyServer := &LobbyServer{}
 	lobbyServer.DB = db
+
+	if enableMemory {
+		log.Println("正在使用内存模式 保存 lobby home")
+		db2, err := gorm.Open(sqlite.Open("file::memory:?cache=shared"), &gorm.Config{
+			Logger: logger.Default.LogMode(logger.Error),
+		})
+		if err != nil {
+			log.Println(err)
+		}
+		db2.AutoMigrate(&LobbyHome{})
+		lobbyServer.DB2 = db2
+	} else {
+		db2, err := gorm.Open(sqlite.Open("lobby-home-db"), &gorm.Config{
+			Logger: logger.Default.LogMode(logger.Error),
+		})
+		if err != nil {
+			log.Println(err)
+		}
+		db2.AutoMigrate(&LobbyHome{})
+		lobbyServer.DB2 = db2
+	}
+
 	return lobbyServer
 }
 
@@ -337,7 +360,7 @@ func (l *LobbyServer) updateLobbyHome(lobbyHomeList []LobbyHome, region, platfor
 	// 查询数据库中已经存在的房间信息
 	lobbyHomeListLen := len(lobbyHomeList)
 	existingRooms := make([]LobbyHome, 0, lobbyHomeListLen)
-	if err := l.DB.Where("region = ? and platform2 = ?", region, platform).Find(&existingRooms).Error; err != nil {
+	if err := l.DB2.Where("region = ? and platform2 = ?", region, platform).Find(&existingRooms).Error; err != nil {
 		fmt.Println("Error querying existing rooms:", err)
 		return
 	}
@@ -405,7 +428,7 @@ func (l *LobbyServer) updateLobbyHome(lobbyHomeList []LobbyHome, region, platfor
 	var batchSize = 800
 
 	if len(deleteRooms) > 0 {
-		l.DB.Delete(&deleteRooms)
+		l.DB2.Delete(&deleteRooms)
 	}
 
 	if len(updateRooms) > 0 {
@@ -423,7 +446,7 @@ func (l *LobbyServer) updateLobbyHome(lobbyHomeList []LobbyHome, region, platfor
 
 				// 每个批次处理一部分数据
 				batch := updateRooms[i:end]
-				if err := l.DB.Save(&batch).Error; err != nil {
+				if err := l.DB2.Save(&batch).Error; err != nil {
 					// 处理错误
 					log.Println("update table ", err)
 				}
@@ -446,7 +469,7 @@ func (l *LobbyServer) updateLobbyHome(lobbyHomeList []LobbyHome, region, platfor
 
 			// 每个批次处理一部分数据
 			batch := createRooms[i:end]
-			if err := l.DB.Create(&batch).Error; err != nil {
+			if err := l.DB2.Create(&batch).Error; err != nil {
 				// 处理错误
 				log.Println("insert table ", err)
 			}

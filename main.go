@@ -26,7 +26,7 @@ func initDB(cfg *config.Config) {
 		&lobbyServer.LobbyStatistics{},
 		&lobbyServer.LobbyHomeBrief{},
 	)
-	lobbyServer2 := lobbyServer.NewLobbyServerWithDB(db)
+	lobbyServer2 := lobbyServer.NewLobbyServerWithDB(db, cfg.Database.EnableMemory)
 	global.LobbyServer = lobbyServer2
 	go lobbyServer2.StartCollect(cfg.Interval.Collect)
 	go lobbyServer2.StartStatistics(cfg.Interval.Statistics)

@@ -16,8 +16,8 @@ type LobbyServerApi struct {
 
 func (l *LobbyServerApi) QueryLobbyServerList(ctx *gin.Context) {
 
-	db := database.DB
-	db2 := database.DB
+	db := global.LobbyServer.DB2
+	db2 := global.LobbyServer.DB2
 
 	if addr, isExist := ctx.GetQuery("__addr"); isExist {
 		db = db.Where("addr = ?", addr)

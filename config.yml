@@ -1,6 +1,7 @@
 port: 80
 interval:
-  collect: 120
+  collect: 60
   statistics: 600
 database:
+  enableMemory: true
   logLevel: 4

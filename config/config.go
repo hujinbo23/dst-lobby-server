@@ -14,7 +14,8 @@ type Config struct {
 	} `yaml:"interval"`
 
 	Database struct {
-		LogLevel int `yaml:"logLevel"`
+		LogLevel     int  `yaml:"logLevel"`
+		EnableMemory bool `yaml:"enableMemory"`
 	} `yaml:"database"`
 }
 
