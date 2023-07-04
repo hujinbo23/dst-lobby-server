@@ -5,7 +5,11 @@ function App() {
 
   return (
     <>
-      <LobbyServerList />
+      <div style={{
+          padding: '16px'
+      }}>
+          <LobbyServerList />
+      </div>
     </>
   )
 }

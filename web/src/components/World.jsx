@@ -2,11 +2,15 @@ import {Card, Form, Space} from "antd";
 
 export default (props) => {
     const {secondariesJson} = props
-    const secondaries = JSON.parse(secondariesJson)
+    let json = "{}"
+    if (secondariesJson !== null && secondariesJson !== undefined && secondariesJson !== "") {
+        json = secondariesJson
+    }
+    console.log()
+    const secondaries = JSON.parse(json)
     return (
         <>
-            <h3>从世界</h3>
-            <h4>层数: {Object.keys(secondaries).length}</h4>
+            <div className="text-base font-medium pb-2">层数: {Object.keys(secondaries).length}</div>
             {Object.keys(secondaries).map(key => (
                 <div key={key}>
                     <Card bordered={false} style={{

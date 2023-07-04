@@ -2,6 +2,7 @@ import {dstRoles} from "../utils/dst.js";
 import {Image} from "antd";
 import HistoryLineChart from "./chart/HistoryLineChart.jsx";
 import ModsInfo from "./home/ModsInfo.jsx";
+import World from "./World.jsx";
 
 const H3Style = ({title}) => {
     return (
@@ -90,10 +91,6 @@ export default ({home}) => {
                         <div style={{padding: '16px'}}>
                             <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
                                 {home.playerList.map(item => <div style={{display: 'flex'}}>
-                                    {/*<img className="ant-image-img"*/}
-                                    {/*     src={dstRoles[item.prefab] || dstRoles.mod}*/}
-                                    {/*     width="36.8" alt={"xxx"}/>*/}
-
                                     <a
                                         target={'_blank'}
                                         href={`https://steamcommunity.com/profiles/${item.netID}`}
@@ -124,6 +121,13 @@ export default ({home}) => {
                         <H3Style title={"模组"}/>
                         <div style={{padding: '16px'}}>
                             <ModsInfo modsInfo={home.mods_info} />
+                        </div>
+                    </div>
+
+                    <div style={marginCss}>
+                        <H3Style title={"从世界"}/>
+                        <div style={{padding: '16px'}}>
+                            <World secondariesJson={home.secondariesJson}/>
                         </div>
                     </div>
 

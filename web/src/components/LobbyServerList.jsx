@@ -6,7 +6,6 @@ import { ShareAltOutlined } from '@ant-design/icons';
 
 import {lobbyServerDetailApi, lobbyServerListApi} from "../api/lobbyServerApi.js";
 import World from "./World.jsx";
-import LobbyServerDetail from "./LobbyServerDetail.jsx";
 import HomeDetail from "./HomeDetail.jsx";
 
 const {Paragraph} = Typography;
@@ -228,6 +227,7 @@ export default () => {
                     {/*<div style={{ height: 500}}>*/}
                     {/*    <LobbyServerDetail data={homeInfo} />*/}
                     {/*</div>*/}
+                    <br/>
                     <HomeDetail home={homeInfo} />
                 </Skeleton>
             </Modal>

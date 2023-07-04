@@ -1,7 +1,6 @@
 import {useEffect, useState} from "react";
 import {queryModsApi} from "../../api/modApi.js";
-import {dstRoles} from "../../utils/dst.js";
-import {Image} from "antd";
+import {Image, Tooltip} from "antd";
 
 function handleModsInfo(modsInfo) {
     if (modsInfo === undefined || modsInfo === null || modsInfo.length < 4) {
@@ -23,8 +22,7 @@ function handleModsInfo(modsInfo) {
 }
 
 function findMod(mods, modId) {
-
-    for (let i=0;i <mods.length;i++) {
+    for (let i = 0; i < mods.length; i++) {
         if (mods[i].publishedfileid === modId) {
             return mods[i]
         }
@@ -40,7 +38,7 @@ export default ({modsInfo}) => {
             .then(resp => {
                 console.log(resp)
                 let newMods = []
-                mods.forEach(mod=>{
+                mods.forEach(mod => {
                     mod.image = findMod(resp.data, mod.modId).preview_url
                     newMods.push(mod)
                 })
@@ -52,10 +50,42 @@ export default ({modsInfo}) => {
         <>
             <div className="text-base font-medium pb-2">数量: {mods.length}</div>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-                {mods.map(mod => <div style={{
-                    color: 'rgba(0, 0, 0, 0.45)',
-                    fontSize: '16px'
-                }}><Image preview={false} width={36.8} src={mod.image}/>
+                {mods.map(mod => <div
+                    key={mod.modid}
+                    style={{
+                        color: 'rgba(0, 0, 0, 0.45)',
+                        fontSize: '16px'
+                    }}>
+                    <a
+                        target={'_blank'}
+                        href={`https://steamcommunity.com/sharedfiles/filedetails/?id=${mod.modid}`}
+                        key="list-loadmore-edit"
+                        rel="noreferrer">
+                        <Tooltip title="点击进入订阅页">
+                            <Image preview={false} width={46.8} src={mod.image}/>
+                        </Tooltip>
+                    </a>
+                    {/*
+                        {mod.isClientDownload ?
+                        <Tooltip title="必须安装才能进入">
+                            <Image preview={false} width={22}
+                                   src={'https://dst.liuyh.com/static/img/dstui/icon/apply_skins.png'}/>
+                        </Tooltip> : ''}
+                    <a
+                        target={'_blank'}
+                        href={`https://steamcommunity.com/sharedfiles/filedetails/?id=${mod.modid}`}
+                        key="list-loadmore-edit"
+                        style={{
+                            background: 'url(https://dst.liuyh.com/static/img/dstui/icon_button_normal.png)'
+                        }} rel="noreferrer">
+                        <Tooltip title="点击进入订阅页">
+                            <Image preview={false} width={22}
+                                   src={'https://dst.liuyh.com/static/img/dstui/icon/update.png'}/>
+                        </Tooltip>
+                    </a>
+
+                    */}
+
                     <div>{mod.name}</div>
                 </div>)}
             </div>
