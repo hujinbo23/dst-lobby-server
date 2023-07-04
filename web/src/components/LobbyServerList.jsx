@@ -13,10 +13,22 @@ const { Text } = Typography;
 
 // eslint-disable-next-line react-refresh/only-export-components
 const SeasonsEnum ={
-    spring: "spring",
-    summer: "summer",
-    autumn: "autumn",
-    winter: "winter",
+    spring: "春天",
+    summer: "夏天",
+    autumn: "秋天",
+    winter: "冬天",
+}
+
+const GameModEnum = {
+    relaxed: "轻松",
+    endless: "无尽",
+    survival: "标准",
+    wilderness: "荒野",
+    lightsout: "永夜",
+    lavaarena: "熔炉",
+    quagmire: "暴食",
+    OceanFishing: "海钓",
+    starvingfloor: "闯关"
 }
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -94,12 +106,8 @@ export default () => {
             title: '游戏模式',
             key: 'mode',
             width: 100,
-            valueEnum: {
-                survival: "survival",
-                endless: "endless",
-                relaxed: "relaxed",
-            },
-            render: (text, record, _, action) => (<div>{record.mode}</div>),
+            valueEnum: GameModEnum,
+            render: (text, record, _, action) => (<div>{GameModEnum[record.mode]}</div>),
         },
         {
             title: '季节',
